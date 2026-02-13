@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.service.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ public class PostsViewController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("appName", "Моё супер приложение");
+        var posts = postsService.listAllPosts();
+        model.addAttribute("posts", posts);
         return "list";
     }
 
@@ -19,5 +23,8 @@ public class PostsViewController {
     public String single(@PathVariable("id") Long id) {
         return "Здесь будет страница поста №" + id;
     }
+
+    @Autowired
+    private PostService postsService;
 
 }
