@@ -1,14 +1,21 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
     private Integer likes;
     private Date creationDate;
 
-    public Post (Long id, String text){
+    public Post(){}
+
+    public Post (String text){
         this.id = id;
         this.text = text;
         this.likes = 0;
@@ -28,5 +35,4 @@ public class Post {
     public void setLikes(Integer likes){
         this.likes = likes;
     }
-
 }
