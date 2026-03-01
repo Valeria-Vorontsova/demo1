@@ -5,6 +5,7 @@
     <title>TODO</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/main.js"></script>
 </head>
 <body>
@@ -20,7 +21,9 @@
                 <p class="description-text" th:text="${post.text}">Text</p>
             </div>
             <div class="col-md-1">
-                <button class="btn btn-sm btn-secondary like" th:text="${post.likes + ' ❤'}">0 ❤</button>
+                <button class="btn btn-sm btn-secondary like" th:text="${post.likes + ' ❤'}"
+                        th:attr="data-post-id=${post.id}">0 ❤
+                </button>
             </div>
             <div class="col-md-12">
                 <hr/>

@@ -13,15 +13,16 @@ public class PostService {
     private final List<Post> posts;
     {
         posts = new ArrayList<>();
-        posts.add(new Post("Первый пост о backend"));
-        posts.add(new Post("Второй пост о frontend"));
-        posts.add(new Post("Третий пост о БД"));
+        posts.add(new Post(0L,"Первый пост о backend"));
+        posts.add(new Post(1L,"Второй пост о frontend"));
+        posts.add(new Post(2L,"Третий пост о БД"));
     }
     public List <Post> listAllPosts(){
         return posts;
     }
 
     public void create(String text) {
-        posts.add(new Post(text));
+        Long newId = (long) posts.size();
+        posts.add(new Post(newId, text));
     }
 }
