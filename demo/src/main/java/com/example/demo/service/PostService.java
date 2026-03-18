@@ -15,10 +15,6 @@ public class PostService {
 
     @Autowired
     private PostRepository postRepository;
-    private final List<Post> posts;
-    {
-        posts = new ArrayList<>();
-    }
     public List <Post> listAllPosts(){
         return (List<Post>) postRepository.findAll();
     }
@@ -26,6 +22,13 @@ public class PostService {
     public void create(String text) {
         Post post = new Post(text);
         postRepository.save(post);
+    }
 
+    public Post getPostById(Long Id){
+        return postRepository.findById(Id).orElse(null);
+    }
+
+    public void updatePost(Post post){
+        postRepository.save(post);
     }
 }

@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class LikesService {
     @Autowired
-            private PostService postService;
-    public int like(Long postId){
-        Post post = postService.listAllPosts().get(postId.intValue());
-        post.setLikes(post.getLikes() + 1);
-        return post.getLikes();
-    }
+    private PostService postService;
 
+    public int like(Long postId) {
+        Post post = postService.getPostById(postId);
+        if (post != null) {
+            post.setLikes(post.getLikes() + 1);
+            postService.updatePost(post);
+            return post.getLikes();
+        }
+        return 0;
+    }
 }
